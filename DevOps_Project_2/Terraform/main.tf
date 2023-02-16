@@ -13,7 +13,7 @@ data "aws_ami" "amazon-linux" {
 }
 
 resource "aws_instance" "dev_machine" {
-  ami = data.aws_ami.amazon-linux.id
+  ami = "ami-0dfcb1ef8550277af"
   instance_type = "t2.micro"
   key_name = "euran-jenkins"
 
