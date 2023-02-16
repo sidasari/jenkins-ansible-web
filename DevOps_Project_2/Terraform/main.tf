@@ -14,6 +14,7 @@ data "aws_ami" "amazon-linux" {
 
 resource "aws_instance" "dev_machine" {
   ami = data.aws_ami.amazon-linux.id
+  subnet_id = "subnet-02ba5fc534b945de3"
   instance_type = "t2.micro"
   key_name = "keypair"
 
