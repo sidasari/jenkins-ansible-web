@@ -11,22 +11,19 @@ data "aws_ami" "amazon-linux" {
     values = ["hvm"]
   }
 }
-
 data "aws_vpc" "awsb39vpc" {
 
     id = "vpc-0a4aa6bf43a190a1a"
+}
+data "aws_subnet" "awsb39vpcsubnet" {
+
+    id = "subnet-02ba5fc534b945de3"
 } 
 
-data "aws_subnets" "awsb39vpcsubnets" {
-    filter {
-        name = "vpc-id"
-        values = ["vpc-0a4aa6bf43a190a1a"]
-
-    }
-}
 resource "aws_instance" "dev_machine" {
   ami = data.aws_ami.amazon-linux.id
-  subnet_id = data.aws_subnet.awsb39vpcsubnets.0.id
+  
+  subnet_id = data.aws_subnet.awsb39vpcsubnet.id
   instance_type = "t2.micro"
   key_name = "keypair"
 
